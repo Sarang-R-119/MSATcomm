@@ -1,6 +1,6 @@
 import  socket
 
-host = '192.168.43.127'
+host = '172.30.50.145'
 port = 5560
 
 mySocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
