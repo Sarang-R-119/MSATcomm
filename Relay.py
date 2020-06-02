@@ -8,9 +8,9 @@ def setupRelay():
 	GPIO.setup(12,GPIO.OUT)
 
 def relaySwitchON():
-	    print "Relay ON"
+	    print("Relay ON")
 	    GPIO.output(12,GPIO.LOW)
 
 def relaySwitchOFF():
-	    print "Relay OFF"
+	    print("Relay OFF")
 	    GPIO.output(12,GPIO.HIGH)

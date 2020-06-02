@@ -48,7 +48,7 @@ def setupConnection():
     s.listen(2);
     connection, address = s.accept()
 
-    print("Connected to: " + str(address))
+    print("Connected to: " + str(address[0]))
     return connection
 
 #Receives Messages from the client and decides the course of action accordingly.

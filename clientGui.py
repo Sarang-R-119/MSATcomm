@@ -1,16 +1,20 @@
 import tkinter as tk
 from threading import Thread
+import sys
+sys.path.insert(1,'E:/Users/USER/Documents/Python Scripts/MSAT')
+from credentials import *
 #standard library for socket programming
 #socket is the endpoint on a connection line
 import  socket
 
 #IP address of the Host or Server
-HOST = '' 
+HOST = host 
 #Chooses a port that is not being used already
 PORT = 5560
 
 HEIGHT = 500
 WIDTH = 500
+isConnected = True
 
 #Sets up the Client.
 #Creates a socket with attributes
@@ -32,11 +36,13 @@ def sendMessage(event = None):
 	    mySocket.send(str.encode(command))
 	    print("Shutting down the Client.")
 	    mySocket.close()
+	    root.quit()
 
 	elif command == 'KILL':
 	    # Send KILL command to shut down the Server.
 	    mySocket.send(str.encode(command))
 	    print("Disconnected from the Server.")
+	    isConnected = False
 	
 	#Assuming relay is the main operation of raspberry pi 1, it sends the command to the raspberry pi 1.
 	elif 'RELAY' in command:
@@ -44,13 +50,13 @@ def sendMessage(event = None):
 		commands = command.split(' ', 1)
 		relayCommand = commands[1]
 		mySocket.send(str.encode(relayCommand))
-	text.set("")
+	text.delete(0, tk.END)
 
 def listenMessage():
 	#Listens for messages from the server continuously on a different thread.
 	#Once a message is received, it is displayed onto the display of the window.
 	#If there was no infinite loop, rest of the messages won't have been received.
-	while True:	
+	while isConnected == True:	#Doesn't work yet
 	    print("Checking for messages")
 	    reply = mySocket.recv(1024)
 	    receivedMessage = reply.decode('utf-8')
