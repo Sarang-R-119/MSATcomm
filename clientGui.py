@@ -5,7 +5,7 @@ from threading import Thread
 import  socket
 
 #IP address of the Host or Server
-HOST = '172.16.64.31' #'192.168.43.223'
+HOST = '' 
 #Chooses a port that is not being used already
 PORT = 5560
 
